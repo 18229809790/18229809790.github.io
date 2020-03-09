@@ -11,7 +11,7 @@
 
     <title>
         
-        渣渣的博客 | Zhazha&#39;s Blog
+        JWT初步认识 - 渣渣的博客 | Zhazha&#39;s Blog
         
     </title>
 
@@ -65,7 +65,7 @@
                     <span>标签</span>
                 </a>
             </li>
-            <li  class=active >
+            <li >
                 <a href="/archives">
                     <i class="iconfont icon-guidang2"></i>
                     <span>存档</span>
@@ -87,6 +87,10 @@
             
         </ul>
     </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#前言"><span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JWT是什么"><span class="toc-text">JWT是什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#什么情况下适合使用JWT"><span class="toc-text">什么情况下适合使用JWT</span></a></li></ol>
+</div>
     
 </div>
 
@@ -114,60 +118,48 @@
         
 
 
-<!-- 归档列表 -->
+<div class="post-container">
+    <div class="post-title">
+        JWT初步认识
+    </div>
 
-<div class="archives-container">
-
-<div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2020">
-                    <span class="tag-text">2020</span>
-                </span>
-    <ul>
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-03-09 21:47:55</span></span>
         
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li >
-            <span>03-09</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2020/03/09/JWT初步认识/">
-                        <span>
-                            JWT初步认识
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>今天在github上找到一个前后端分离的个人博客项目，前端页面做的很简洁美观，就clone了下来，事实上也不是第一次下载…上一次下载后看到了nginx.conf这个文件以及后端项目里超级多的文件夹是以前没接触过的，让我望而生畏了，并且当时比较浮躁，心静不下来研究这个博客的代码，所以结局以我把它删掉告终。今天可能是因为自认为对nginx有了一点了解，也可能是昨夜里失眠到4、5点，早上7：20起来上网课以至于心情比较平静，我终于决定要好好的研究这个项目，第一步就是后台页面的登录，是用JWT实现的，所以今天简单学习了一下JWT。</p>
+<h1 id="JWT是什么"><a href="#JWT是什么" class="headerlink" title="JWT是什么"></a>JWT是什么</h1><p>JWT全称 JSON Web Token，官方文档是这样解释的：JSON Web Token（JWT）是一个开放标准（RFC 7519），它定义了一种紧凑且独立的方式，可以在各方之间作为JSON对象安全地传输信息。此信息可以通过数字签名进行验证和信任。JWT可以使用秘密（使用HMAC算法）或使用RSA或ECDSA的公钥/私钥对进行签名。<br>虽然JWT可以加密以在各方之间提供保密，但只将专注于签名令牌。签名令牌可以验证其中包含的声明的完整性，而加密令牌则隐藏其他方的声明。当使用公钥/私钥对签署令牌时，签名还证明只有持有私钥的一方是签署私钥的一方。</p>
+<p>简单来说，JWT是一个包含签名并携带用户相关信息的加密串，页面请求校验登录接口时，请求头中携带JWT串到后端服务，后端通过签名加密串匹配校验，保证信息未被纂改。校验通过则认为是可靠的请求，将正常返回数据。</p>
+<h1 id="什么情况下适合使用JWT"><a href="#什么情况下适合使用JWT" class="headerlink" title="什么情况下适合使用JWT"></a>什么情况下适合使用JWT</h1><ul>
+<li>授权：这是最常见的使用场景，解决单点登录问题。因为JWT使用起来轻便，开销小，服务端不用记录用户状态信息（无状态），所以使用比较广泛；</li>
+<li>信息交换：JWT是在各个服务之间安全传输信息的好方法。因为JWT可以签名，例如，使用公钥/私钥对 可以确定请求方是合法的。此外，由于使用标头和有效负载计算签名，还可以验证内容是否未被纂改。</li>
+</ul>
 
-    </ul>
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
 </div>
-
-<div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2019">
-                    <span class="tag-text">2019</span>
-                </span>
-    <ul>
         
-        <!-- <li class="listing-item">
-        <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-        <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-        </li> -->
-        <li >
-            <span>07-25</span>
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/2019/07/25/培养方案/">
-                        <span>
-                            培养方案
-                        </span>
-            </a>
-            <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-        </li>
-        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
 
-    </ul>
-</div>
+        <div id="lv-container">
+        </div>
 
+    </div>
 </div>
 
     </div>
@@ -221,7 +213,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
