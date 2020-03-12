@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="渣渣的博客">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        设计模式之策略模式学习总结 - 渣渣的博客 | Zhazha&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 以面向工资编程为目的，努力学习！ </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Zhazha Zhuai</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#策略模式是什么"><span class="toc-text">策略模式是什么</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#官方解释"><span class="toc-text">官方解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#个人理解"><span class="toc-text">个人理解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#简单代码实现"><span class="toc-text">简单代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#策略模式的优点"><span class="toc-text">策略模式的优点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#策略模式的缺点"><span class="toc-text">策略模式的缺点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#策略模式的使用场景"><span class="toc-text">策略模式的使用场景</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#策略模式的应用实例"><span class="toc-text">策略模式的应用实例</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#策略模式与其他模式的区别"><span class="toc-text">策略模式与其他模式的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#策略模式举例"><span class="toc-text">策略模式举例</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 以面向工资编程为目的，努力学习！ </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        设计模式之策略模式学习总结
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-03-12 09:04:32</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#JAVA 设计模式" title="JAVA 设计模式">JAVA 设计模式</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="策略模式是什么"><a href="#策略模式是什么" class="headerlink" title="策略模式是什么"></a>策略模式是什么</h1><h2 id="官方解释"><a href="#官方解释" class="headerlink" title="官方解释"></a>官方解释</h2><ul>
+<li>百度百科：<strong>策略模式</strong>是指有一定行动内容的相对稳定的策略名称。策略模式在古代中又称“计策”，简称“计”，如《汉书·高帝纪上》：“汉王从其计”。这里的“计”指的就是计谋、策略。策略模式具有相对稳定的形式，如“避实就虚”、“出奇制胜”等。一定的策略模式，既可应用于战略决策，也可应用于战术决策；既可实施于大系统的全局性行动，也可实施于大系统的局部性行动。</li>
+<li>维基百科中文：<strong>策略模式</strong>作为一种软件设计模式，指对象有某个行为，但是在不同的场景中，该行为有不同的实现算法。比如每个人都要“交个人所得税”，但是“在美国交个人所得税”和“在中国交个人所得税”就有不同的算税方法。 <strong>策略模式</strong>： 定义了一族算法（业务规则）； 封装了每个算法； 这族的算法可互换代替（interchangeable）。</li>
+</ul>
+<h2 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h2><p>策略模式，我个人理解的是，为了达到某个目的，在不同的情况下有多种不同的方式，比如说小明写作业，小明很勤快自己写，小明不想思考抄学霸小红的，小明自力更生抄小猿搜题的，小明是懒惰的大富豪花钱雇小刚帮他抄等等，最终都达到了完成作业这个目的。每一种方式都是一种策略。</p>
+<h2 id="简单代码实现"><a href="#简单代码实现" class="headerlink" title="简单代码实现"></a>简单代码实现</h2><ul>
+<li><p>结构图</p>
+<p><img src="E:%5Cblog%5CkhBlog%5Csource_posts%5C%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93%5C094138.jpg" alt></p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	抽象算法类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="comment">//算法方法</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">algorithmInterface</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//具体算法A</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyA</span> <span class="keyword">extends</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">algorithmInterface</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"算法A实现"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//具体算法B</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ConcreteStrategyB</span> <span class="keyword">extends</span> <span class="title">Strategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">algorithmInterface</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"算法B实现"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//......其他各种算法</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	Context上下文：起承上启下作业，屏蔽高层模块对策略、算法的直接访问，封装可能存在的变化。</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Context</span> </span>&#123;</span><br><span class="line">    Strategy strategy;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Context</span><span class="params">(Strategy strategy)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.strategy = strategy;</span><br><span class="line">    &#125; </span><br><span class="line">    </span><br><span class="line">    <span class="comment">//上下文接口</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">ContextInterface</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        strategy.algorithmInterface();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	Client客户端</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Client</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Context context;</span><br><span class="line">        </span><br><span class="line">        context = <span class="keyword">new</span> Context(<span class="keyword">new</span> ConcreteStrategyA());</span><br><span class="line">        context.contextInterface();</span><br><span class="line">        context = <span class="keyword">new</span> Context(<span class="keyword">new</span> ConcreteStrategyB());</span><br><span class="line">        context.contextInterface();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//运行结果</span></span><br><span class="line"><span class="comment">//算法A实现</span></span><br><span class="line"><span class="comment">//算法B实现</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="策略模式的优点"><a href="#策略模式的优点" class="headerlink" title="策略模式的优点"></a>策略模式的优点</h1><ol>
+<li>算法可以自由切换。</li>
+<li>避免了使用多重条件判断。如果不用策略模式，我们可能会使用多重条件语句，不利于代码的维护。</li>
+<li>扩展性良好，增加一个策略只需要实现接口就可以。</li>
+</ol>
+<h1 id="策略模式的缺点"><a href="#策略模式的缺点" class="headerlink" title="策略模式的缺点"></a>策略模式的缺点</h1><ol>
+<li>每一个策略都是一个类，每当要增加一个策略就要增加一个类，但是每一个策略的复用的可能性比较小，就会造成代码的臃肿和冗余。</li>
+<li>所有的策略类都需要对外暴露。</li>
+</ol>
+<h1 id="策略模式的使用场景"><a href="#策略模式的使用场景" class="headerlink" title="策略模式的使用场景"></a>策略模式的使用场景</h1><ul>
+<li>多个类只有算法或行为上稍有不同的场景。</li>
+<li>算法需要自由切换的场景。</li>
+<li>需要屏蔽算法规则的场景。</li>
+</ul>
+<h1 id="策略模式的应用实例"><a href="#策略模式的应用实例" class="headerlink" title="策略模式的应用实例"></a>策略模式的应用实例</h1><ul>
+<li>商场促销方式，打折、满减等。</li>
+<li>Java AWT中的LayoutManager，机布局管理器</li>
+</ul>
+<h1 id="策略模式与其他模式的区别"><a href="#策略模式与其他模式的区别" class="headerlink" title="策略模式与其他模式的区别"></a>策略模式与其他模式的区别</h1><ul>
+<li><p>与状态模式的区别</p>
+<ul>
+<li>策略模式只是条件选择方法，只执行一次方法，而状态模式是随着状态的改变不停地更改执行方法。比如，我们出去旅游，对于策略模式来讲我们只需要选择一种出行方式就好了，比如自行车、小汽车、火车、高铁、飞机，根据不同情况选择不同方式到达目的地。但状态模式不一样，可能当我们骑自行车到了A地，想坐火车了，就从A地坐火车到了B地，然后又想坐飞机了，就从B地坐飞机到达C地，状态不同选择不同。</li>
+</ul>
+</li>
+<li><p>与工厂模式的区别</p>
+<ul>
+<li>工厂模式是创建型模式，它关注对象创建，提供创建对象的接口，让对象的创建与具体的使用客户无关。策略模式是对象行为型模式，关注行为和算法的封装。比如，还是我们去旅行，对于策略模式我们是根据情况选择一种方式出行，而对于工厂模式，是在我们决定好用哪种方式去旅行之后，由工厂代替我们去构建具体方案，即工厂代替我们去买火车票或者其他什么票。</li>
+</ul>
+<h1 id="策略模式举例"><a href="#策略模式举例" class="headerlink" title="策略模式举例"></a>策略模式举例</h1><p>依旧是外出旅游的例子。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">TravelStrategy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">travelStyle</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TrainStrategy</span> <span class="keyword">extends</span> <span class="title">TravelStrategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">travelStyle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"乘坐火车出行"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HighTrainSrategy</span> <span class="keyword">extends</span> <span class="title">TravelStrategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">travelStyle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"乘坐高铁出行"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AirSrategy</span> <span class="keyword">extends</span> <span class="title">TravelStrategy</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">travelStyle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"乘坐飞机出行"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Traveler</span> </span>&#123;</span><br><span class="line">    String name;</span><br><span class="line">    TravelStrategy travelStrategy;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Traveler</span><span class="params">(String name, TravelStrategy travelStrategy)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.travelStrategy = travelStrategy;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">travelStyle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.print(<span class="keyword">this</span>.name);</span><br><span class="line">        travelStrategy.travelStyle();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Traveler xiaoMing = <span class="keyword">new</span> Traveler(<span class="string">"小明"</span>, <span class="keyword">new</span> TrainStrategy());</span><br><span class="line">        xiaoMing.travelStyle();</span><br><span class="line">        Traveler xiaoHong = <span class="keyword">new</span> Traveler(<span class="string">"小红"</span>, <span class="keyword">new</span> HighTrainStrategy());</span><br><span class="line">        xiaoHong.travelStyle();</span><br><span class="line">        Traveler xiaoGang = <span class="keyword">new</span> Traveler(<span class="string">"小刚"</span>, <span class="keyword">new</span> AirStrategy());</span><br><span class="line">        xiaoGang.travelStyle();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//结果</span></span><br><span class="line"><span class="comment">//小明乘坐火车出行</span></span><br><span class="line"><span class="comment">//小红乘坐高铁出行</span></span><br><span class="line"><span class="comment">//小刚乘坐飞机出行</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/18229809790">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
