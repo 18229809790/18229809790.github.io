@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="渣渣的博客">
+    <meta name="keyword" content>
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        设计模式之装饰模式学习总结 - 渣渣的博客 | Zhazha&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 以面向工资编程为目的，努力学习！ </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar ">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Zhazha Zhuai</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archives">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#什么是装饰模式"><span class="toc-text">什么是装饰模式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#官方解释"><span class="toc-text">官方解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#个人理解"><span class="toc-text">个人理解</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#装饰模式的特点"><span class="toc-text">装饰模式的特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#装饰模式的使用条件"><span class="toc-text">装饰模式的使用条件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#装饰模式的优点"><span class="toc-text">装饰模式的优点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#装饰模式的缺点"><span class="toc-text">装饰模式的缺点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#装饰模式和代理模式的区别"><span class="toc-text">装饰模式和代理模式的区别</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#装饰模式举例"><span class="toc-text">装饰模式举例</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 以面向工资编程为目的，努力学习！ </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        设计模式之装饰模式学习总结
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-03-11 18:03:37</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#JAVA 设计模式" title="JAVA 设计模式">JAVA 设计模式</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <h1 id="什么是装饰模式"><a href="#什么是装饰模式" class="headerlink" title="什么是装饰模式"></a>什么是装饰模式</h1><h2 id="官方解释"><a href="#官方解释" class="headerlink" title="官方解释"></a>官方解释</h2><ul>
+<li>百度百科：<strong>装饰模式</strong>指的是在不必改变原类文件和使用继承的情况下，动态地扩展一个对象的功能。它是通过创建一个包装对象，也就是装饰来包裹真实的对象。</li>
+<li>维基百科中文版：<strong>修饰模式</strong>，是面向对象编程领域中，一种动态地往一个类中添加新的行为的设计模式。就功能而言，修饰模式相比生成子类更为灵活，这样可以给某个对象而不是整个类添加一些功能。</li>
+</ul>
+<h2 id="个人理解"><a href="#个人理解" class="headerlink" title="个人理解"></a>个人理解</h2><p>装饰模式大概就是某个人（对象）穿上一件一件的装备，每当穿上一件装备，功能就会增加一个，能力就会增强一些，每个人（对象）的装备不同，获得的功能也就不同。</p>
+<h1 id="装饰模式的特点"><a href="#装饰模式的特点" class="headerlink" title="装饰模式的特点"></a>装饰模式的特点</h1><ol>
+<li><p>装饰对象和真实对象有相同的接口。这样客户端对象就能以和真实对象相同的方式与装饰对象交互。</p>
+</li>
+<li><p>装饰对象包含一个真实对象的引用。</p>
+</li>
+<li><p>装饰对象接收所有来自客户端的请求。它把这些请求转发给真实的对象。</p>
+</li>
+<li><p>装饰对象可以在转发这些请求以前或以后增加一些附加功能。这样就确保了在运行时，不用修改给定对象的结构就可以在外部增加附加的功能。在面向对象的设计中，通常是通过继承来实现对给定类的功能扩展。</p>
+</li>
+</ol>
+<h1 id="装饰模式的使用条件"><a href="#装饰模式的使用条件" class="headerlink" title="装饰模式的使用条件"></a>装饰模式的使用条件</h1><ul>
+<li>需要扩展一个类的功能，或给一个类添加附加职责。</li>
+<li>需要动态的给一个对象添加功能，这些功能可以再动态的撤销。</li>
+<li>需要增加由一些基本功能的排列组合而产生的非常大量的功能，从而使继承关系变的不现实。</li>
+<li>当不能采用生成子类的方法进行扩充时。一种情况是，可能有大量独立的扩展，为支持每一种组合将产生大量的子类，使得子类数目呈爆炸性增长。另一种情况可能是因为类定义被隐藏，或类定义不能用于生成子类。</li>
+</ul>
+<h1 id="装饰模式的优点"><a href="#装饰模式的优点" class="headerlink" title="装饰模式的优点"></a>装饰模式的优点</h1><ol>
+<li>装饰模式与继承关系的目的都是要扩展对象的功能，但是装饰模式比继承更加灵活。</li>
+<li>通过使用不同的具体装饰类以及这些装饰类的排列组合，设计师可以创造出很多不同行为的组合。</li>
+</ol>
+<h1 id="装饰模式的缺点"><a href="#装饰模式的缺点" class="headerlink" title="装饰模式的缺点"></a>装饰模式的缺点</h1><ol>
+<li>装饰模式比继承更加灵活，也意味着会增加更多的复杂性。</li>
+<li>装饰模式会导致设计中会出现许多小类，如果过度使用，会使得程序变得非常复杂。</li>
+<li>装饰模式是针对抽象组件(Component)类型编程。但是如果要针对具体组件编程时，就应该重新思考你的应用架构，以及装饰者是否合适。当然也可以改变Component接口，增加新的公开的行为，实现“半透明”的装饰者模式。在实际项目中要根据具体情况做出最佳选择。</li>
+</ol>
+<h1 id="装饰模式和代理模式的区别"><a href="#装饰模式和代理模式的区别" class="headerlink" title="装饰模式和代理模式的区别"></a>装饰模式和代理模式的区别</h1><p>代理模式和装饰模式如果不探究其表达的意义，两者是没有区别的。</p>
+<p>装饰模式，注重对对象功能的扩展，<strong>它不关心外界如何调用，只注重对对象功能的加强，装饰后还是对象本身。</strong></p>
+<p>代理模式，注重对对象某一功能的流程把控和辅助。它可以控制对象做某些事，<strong>重心是为了借用对象的功能完成某一流程，而非对象功能如何。</strong></p>
+<p>比如：</p>
+<p>​    父母做饭，我吃，父母洗碗。这是父母代替完成做饭、洗碗的过程。</p>
+<p>​    我做饭，我吃，我洗碗。这是加强了我本身的能力，完成做饭、洗碗的过程。</p>
+<hr>
+​    我长大一点成了学生，需要读书，但不是在家自学，需要送到学校，于是新增了学校代理。
+
+<p>​    学校招生，我学会独立，学会读书，但我本质还是我，可以作为学生入学，但原先父母作为代理类不能代替我入学。</p>
+<h1 id="装饰模式举例"><a href="#装饰模式举例" class="headerlink" title="装饰模式举例"></a>装饰模式举例</h1><ul>
+<li>结构图</li>
+</ul>
+<p><img src="../img/1583920715870.png" alt></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	装饰模式公共接口</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">wear</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	被装饰类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">XiaoMing</span> <span class="keyword">implements</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">wear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"小明穿衣服"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	装饰器</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PersonDecorator</span> <span class="keyword">implements</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    	持有被装饰类，以公共接口接收</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    Person person;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">PersonDecorator</span><span class="params">(Person person)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.person = person;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">wear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        person.wear();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">	具体服饰类</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TShirts</span> <span class="keyword">extends</span> <span class="title">PersonDecorator</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">TShirts</span><span class="params">(Person person)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(person);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">wear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//super.wear();</span></span><br><span class="line">        System.out.println(<span class="string">"大T恤"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BigTrouser</span> <span class="keyword">extends</span> <span class="title">PersonDecorator</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BigTrouser</span><span class="params">(Person person)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>(person);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">wear</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">//super.wear();</span></span><br><span class="line">        System.out.println(<span class="string">"垮裤"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//其余各种服饰类</span></span><br><span class="line"><span class="comment">//......</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Person xiaoMing = <span class="keyword">new</span> XiaoMing();</span><br><span class="line">        xiaoMing.wear();</span><br><span class="line">        xiaoMing = <span class="keyword">new</span> TShirts(xiaoMing);</span><br><span class="line">        xiaoMing.wear();</span><br><span class="line">        xiaoMing = <span class="keyword">new</span> BigTrouser(xiaoMing);</span><br><span class="line">        xiaoMing.wear();</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//结果：</span></span><br><span class="line"><span class="comment">//小明开始穿衣服</span></span><br><span class="line"><span class="comment">//穿上大T恤</span></span><br><span class="line"><span class="comment">//穿上垮裤</span></span><br></pre></td></tr></table></figure>
+
+
+        
+            <div class="donate-container">
+    <div class="donate-button">
+        <button id="donate-button">赞赏</button>
+    </div>
+    <div class="donate-img-container hide" id="donate-img-container">
+        <img id="donate-img" src="" data-src="/img/donate.jpg">
+        <p> 感谢鼓励 </p>
+    </div>
+</div>
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/18229809790">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>
