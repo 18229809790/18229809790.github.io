@@ -180,9 +180,12 @@
 </ul>
 <h1 id="动态代理"><a href="#动态代理" class="headerlink" title="动态代理"></a>动态代理</h1><p>因为静态代理种每个代理类只能为一个接口服务，所以我们想办法<strong>通过一个代理类完成全部的代理功能，那么我们就需要用到动态代理。</strong></p>
 <p><strong>动态代理</strong>是在运行时，通过<strong>反射机制</strong>实现动态代理，并且能够代理各种类型的对象。</p>
-<p>在java中要想实现动态代理机制，需要 ==java.lang.reflect.InvocationHandler== 接口和 ==java.lang.reflect.Proxy== 类的支持。</p>
-<p>动态代理只能代理接口（不支持抽象类），代理类都需要实现 ==InvocationHandler== 类，实现 ==invoke== 方法。<strong>invoke方法就是调用被代理接口的所有方法时需要调用的，返回的值是被代理及接口的一个实现类。</strong></p>
-<h1 id="动态代理的优点"><a href="#动态代理的优点" class="headerlink" title="动态代理的优点"></a>动态代理的优点</h1><p>动态代理和静态代理相比，最大的好处就是接口中声明的所有方法都被转移到调用处理器一个集中的方法中处理（==InvocationHandler.invoke()==）。这样，在接口方法数量比较多的时候，我们可以进行灵活的处理，而不需要像静态代理那样每一个方法进行中转。而且动态代理的应用使我们的类职责更加单一，复用性更强。</p>
+<p>在java中要想实现动态代理机制，需要 <strong>java.lang.reflect.InvocationHandler</strong> 接口和 <strong>java.lang.reflect.Proxy</strong> 类的支持。</p>
+<p>动态代理只能代理接口（不支持抽象类），代理类都需要实现 <strong>InvocationHandler</strong> 类，实现 <strong>invoke</strong> 方法。<strong>invoke方法就是调用被代理接口的所有方法时需要调用的，返回的值是被代理及接口的一个实现类。</strong></p>
+<blockquote>
+<p>备注：要实现动态代理的首要条件：被代理类必须实现一个接口，才能被代理（jdk代理）。CGLIB可以实现不用实现接口也可以实现动态代理。</p>
+</blockquote>
+<h1 id="动态代理的优点"><a href="#动态代理的优点" class="headerlink" title="动态代理的优点"></a>动态代理的优点</h1><p>动态代理和静态代理相比，最大的好处就是接口中声明的所有方法都被转移到调用处理器一个集中的方法中处理（<strong>InvocationHandler.invoke()</strong>）。这样，在接口方法数量比较多的时候，我们可以进行灵活的处理，而不需要像静态代理那样每一个方法进行中转。而且动态代理的应用使我们的类职责更加单一，复用性更强。</p>
 <h1 id="动态代理的缺点"><a href="#动态代理的缺点" class="headerlink" title="动态代理的缺点"></a>动态代理的缺点</h1><ul>
 <li>JDK动态代理是java原生支持的，不需要任何外部依赖，但是它<strong>只能基于接口进行代理</strong>（因为它已经继承Proxy，java不支持多继承）。</li>
 <li>GCLIB动态代理通过继承的方式进行代理，无论目标对象有没有实现接口都可以代理，但是<strong>无法处理final的情况</strong>（final修饰的方法不能被复写）。</li>
